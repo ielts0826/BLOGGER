@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --background-color: #ffffff;
+    --text-color: #212529; /* Darker grey for text */
+    --muted-text-color: #6c757d; /* Lighter grey for metadata */
+    --primary-color: #0d6efd; /* Bootstrap blue as accent */
+    --primary-hover-color: #0b5ed7;
+    --border-color: #dee2e6; /* Light grey for borders */
+    --light-bg-color: #f8f9fa; /* Very light grey for subtle backgrounds */
+    --font-family-base: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-family-base);
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 800px; /* Keep content readable */
+    padding: 40px 20px; /* More vertical padding */
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-size: 16px;
+}
+
+header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem; /* Larger title */
+    font-weight: 700;
+}
+
+header h1 a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+nav {
+    margin-top: 15px; /* Space between title and nav */
+    font-size: 0.95rem;
+}
+
+nav a,
+nav button {
+    margin-right: 15px;
+    text-decoration: none;
+    color: var(--primary-color);
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+}
+
+nav a:hover,
+nav button:hover {
+    color: var(--primary-hover-color);
+    text-decoration: none;
+}
+
+nav span {
+    margin-right: 15px;
+    color: var(--muted-text-color);
+}
+
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+article {
+    margin-bottom: 40px; /* More space between articles */
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+article:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+article h3 a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+article h3 a:hover {
+    color: var(--primary-color);
+}
+
+article p:first-of-type {
+    color: var(--muted-text-color);
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.post-content {
+    margin-top: 20px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: var(--primary-hover-color);
+    text-decoration: underline;
+}
+
+button,
+input[type="submit"] /* Style submit inputs like buttons */
+{
+    padding: 10px 18px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px; /* Slightly more rounded */
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+    display: inline-block; /* Ensure proper padding */
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Simple button style for non-primary actions like logout */
+nav form button {
+    background-color: transparent;
+    color: var(--primary-color);
+    padding: 0;
+    font-size: 0.95rem; /* Match nav link size */
+}
+nav form button:hover {
+     background-color: transparent;
+     text-decoration: underline;
+}
+
+form p {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-family: var(--font-family-base);
+    font-size: 1rem;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus,
+form textarea:focus,
+form select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* Subtle focus ring */
+}
+
+form select[multiple] {
+    height: auto;
+}
+
+/* Remove default hr styles if needed, using borders/margins instead */
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 30px 0;
+}
+
+.comment {
+    background-color: var(--light-bg-color);
+    border: 1px solid var(--border-color);
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.comment p:first-child {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.comment p:last-child {
+     margin-bottom: 0;
+}
+
+.comment strong {
+    font-weight: 600;
+}
+
+.comment span {
+    color: var(--muted-text-color);
+    font-size: 0.85rem;
+}
+
+footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    text-align: center;
+    color: var(--muted-text-color);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Pagination styles */
+.pagination {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.step-links a,
+.step-links .current {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 0 4px;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    border-radius: 4px;
+    color: var(--primary-color);
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.step-links a:hover {
+    background-color: var(--light-bg-color);
+    text-decoration: none;
+}
+
+.step-links .current {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    cursor: default;
+}
+
+/* Add a wrapper class for pagination in the template if needed */
+/* e.g., <div class="pagination"> ... </div> */

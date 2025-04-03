@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<article>
+    <h2>{{ post.title }}</h2>
+    <p>作者: {{ post.author.username }} | 发布于: {{ post.created_at|date:"Y-m-d H:i" }} {% if post.category %}| 分类: {{ post.category.name }}{% endif %}</p>
+    {% if post.tags.all %}
+    <p>标签:
+        {% for tag in post.tags.all %}
+            <span>{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    {% endif %}
+    <div class="post-content">
+        {{ post.content|linebreaks }} {# linebreaks 会将换行符转为 <p> 或 <br> #}
+    </div>
+</article>
+
+{# 只有作者才能看到编辑和删除按钮 #}
+{% if user == post.author %}
+    <a href="{% url 'blog:post_edit' post.pk %}">编辑</a> |
+    <a href="{% url 'blog:post_delete' post.pk %}">删除</a>
+{% endif %}
+
+<hr>
+{# 评论区 #}
+<h3>评论 ({{ comments.count }})</h3>
+
+{# 显示已有评论 #}
+{% for comment in comments %}
+    <div class="comment">
+        <p><strong>{{ comment.author.username }}</strong> <span style="color: gray; font-size: smaller;">评论于 {{ comment.created_at|date:"Y-m-d H:i" }}</span></p>
+        <p>{{ comment.content|linebreaks }}</p>
+    </div>
+    {% empty %}
+    <p>还没有评论。</p>
+{% endfor %}
+
+<hr>
+
+{# 评论表单 #}
+{% if user.is_authenticated %}
+    <h4>添加评论</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }} {# 显示评论表单 #}
+        <button type="submit">提交评论</button>
+    </form>
+{% else %}
+    <p>请 <a href="{% url 'login' %}?next={{ request.path }}">登录</a> 后发表评论。</p> {# next 参数让用户登录后返回当前页面 #}
+{% endif %}
+
+{% endblock %}

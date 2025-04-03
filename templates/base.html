@@ -1,0 +1,38 @@
+{% load static %} {# 在模板顶部加载 static 标签 #}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}我的博客{% endblock %}</title>
+    {# 添加下面这行来链接 CSS 文件 #}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'blog:post_list' %}">我的博客</a></h1>
+        <nav>
+            {% if user.is_authenticated %}
+                <span>你好, {{ user.username }}!</span>
+                <a href="{% url 'blog:post_create' %}">写文章</a>
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">登出</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}?next={{ request.path }}">登录</a> | {# 添加 next 参数 #}
+                <a href="{% url 'users:signup' %}">注册</a>
+            {% endif %}
+        </nav>
+        <hr>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <hr>
+        <p>&copy; 2024 我的博客</p> {# 更新年份 #}
+    </footer>
+</body>
+</html>
